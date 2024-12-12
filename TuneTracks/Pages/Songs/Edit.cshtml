@@ -1,0 +1,54 @@
+﻿@page
+@model TuneTracks.Pages.Songs.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Song</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Song.SongId" />
+            <div class="form-group">
+                <label asp-for="Song.SongTitle" class="control-label"></label>
+                <input asp-for="Song.SongTitle" class="form-control" />
+                <span asp-validation-for="Song.SongTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Song.Duration" class="control-label"></label>
+                <input asp-for="Song.Duration" class="form-control" />
+                <span asp-validation-for="Song.Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Song.Artist" class="control-label"></label>
+                <select asp-for="Song.ArtistId" class="form-control" asp-items="ViewBag.ArtistId">
+                    <option>select artist</option>
+                </select>
+                <span asp-validation-for="Song.ArtistId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Song.Album" class="control-label"></label>
+                <select asp-for="Song.AlbumId" class="form-control" asp-items="ViewBag.AlbumId">
+                    <option>select artist</option>
+                </select>
+                <span asp-validation-for="Song.AlbumId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

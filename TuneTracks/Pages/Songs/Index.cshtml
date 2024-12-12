@@ -1,0 +1,66 @@
+﻿@page
+@model TuneTracks.Pages.Songs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Songs</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+</p>
+<form>
+    <div>
+        <p>
+            Find by Name:
+            <input type="text" name="SearchString"/>
+            <input type="submit" value="Search" class="btn btn-primary"/>
+            <a asp-page="./Index">Back to full list</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].SongTitle)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].Artist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].Album)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].Duration)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Song) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist.ArtistName)
+            </td>  
+            <td>
+                @Html.DisplayFor(modelItem => item.Album.Title)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SongId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SongId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SongId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

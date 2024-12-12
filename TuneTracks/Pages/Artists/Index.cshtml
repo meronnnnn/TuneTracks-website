@@ -1,0 +1,52 @@
+﻿@page
+@model TuneTracks.Pages.Artists.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Artists</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+</p>
+<form>
+    <div>
+        <p>
+            Find by Name:
+            <input type="text" name="SearchString" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-page="./Index">Back to full list</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist[0].ArtistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist[0].genre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Artist) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.genre)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ArtistId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ArtistId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ArtistId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
